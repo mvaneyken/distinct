@@ -1,0 +1,17 @@
+common: &common
+  adapter: postgresql
+  host: localhost
+  username: ????
+  password: ????
+
+development:
+  <<: *common
+  database: distinct_development
+
+test:
+  <<: *common
+  database: distinct_test
+
+production:
+  <<: *common
+  database: distinct_production
