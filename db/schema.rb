@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131171236) do
+ActiveRecord::Schema.define(:version => 20130131192113) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,5 +45,122 @@ ActiveRecord::Schema.define(:version => 20130131171236) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "batches", :force => true do |t|
+    t.integer  "item_master_id"
+    t.boolean  "pass"
+    t.string   "comment"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "equipment", :force => true do |t|
+    t.string   "manufacturer"
+    t.string   "model"
+    t.string   "serial_number"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "item_masters", :force => true do |t|
+    t.integer  "item_type_id"
+    t.string   "code"
+    t.string   "description"
+    t.integer  "test_suite_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "item_types", :force => true do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "measures", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "samples", :force => true do |t|
+    t.integer  "batch_id"
+    t.integer  "standard_id"
+    t.integer  "equipment_id"
+    t.integer  "technician_id"
+    t.decimal  "value"
+    t.boolean  "pass"
+    t.string   "comment"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "standard_equipments", :force => true do |t|
+    t.integer  "standard_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "standards", :force => true do |t|
+    t.string   "name"
+    t.decimal  "min_tolerence"
+    t.integer  "min_tolerance_action_id"
+    t.decimal  "max_tolerance"
+    t.integer  "max_tolerance_action_id"
+    t.integer  "measure_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "technicians", :force => true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "test_standards", :force => true do |t|
+    t.integer  "test_suite_id"
+    t.integer  "standard_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "test_suites", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tolerance_actions", :force => true do |t|
+    t.string   "message"
+    t.string   "colour"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_foreign_key "batches", "item_masters", :name => "batches_item_master_id_fk"
+
+  add_foreign_key "item_masters", "item_types", :name => "item_masters_item_type_id_fk"
+  add_foreign_key "item_masters", "test_suites", :name => "item_masters_test_suite_id_fk"
+
+  add_foreign_key "samples", "batches", :name => "samples_batch_id_fk"
+  add_foreign_key "samples", "equipment", :name => "samples_equipment_id_fk"
+  add_foreign_key "samples", "standards", :name => "samples_standard_id_fk"
+  add_foreign_key "samples", "technicians", :name => "samples_technician_id_fk"
+
+  add_foreign_key "standard_equipments", "equipment", :name => "standard_equipments_equipment_id_fk"
+  add_foreign_key "standard_equipments", "standards", :name => "standard_equipments_standard_id_fk"
+
+  add_foreign_key "standards", "measures", :name => "standards_measure_id_fk"
+  add_foreign_key "standards", "tolerance_actions", :name => "standards_max_tolerance_action_id_fk", :column => "max_tolerance_action_id"
+  add_foreign_key "standards", "tolerance_actions", :name => "standards_min_tolerance_action_id_fk", :column => "min_tolerance_action_id"
+
+  add_foreign_key "test_standards", "standards", :name => "test_standards_standard_id_fk"
+  add_foreign_key "test_standards", "test_suites", :name => "test_standards_test_suite_id_fk"
 
 end
