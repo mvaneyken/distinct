@@ -4,6 +4,7 @@
 en:
   admin:
     label: "Administration"
+    recipes: "Recipes"
     references: "Reference Tables"
     resources: "Resources"
     security: "Security"
@@ -15,5 +16,13 @@ en:
   session:
     signin:
       label: "Log in"
+      admin: "Admin"
+      lab: "Lab"
     signout:
       label: "Log out"
+      lab: "Lab log out"
+  standards:
+    errors:
+      tolerance_reqd: "Tolerance is required."
+      min_action_redundant: "You've requested a 'below minimum tolerance' action, but haven't specified a tolerance."
+      max_action_redundant: "You've requested a 'above maximum tolerance' action, but haven't specified a tolerance."

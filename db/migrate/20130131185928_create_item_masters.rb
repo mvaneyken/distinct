@@ -5,6 +5,7 @@ class CreateItemMasters < ActiveRecord::Migration
       t.string :code
       t.string :description
       t.integer :test_suite_id
+      t.integer :measure_id
 
       t.timestamps
     end

@@ -1,10 +1,11 @@
 class CreateStandards < ActiveRecord::Migration
   def up
     create_table :standards do |t|
-      t.string :name
-      t.decimal :min_tolerence
+      t.string :code
+      t.string :property
+      t.decimal :min_tolerance, precision: 7, scale: 2
       t.integer :min_tolerance_action_id
-      t.decimal :max_tolerance
+      t.decimal :max_tolerance, precision: 7, scale: 2
       t.integer :max_tolerance_action_id
       t.integer :measure_id
 

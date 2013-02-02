@@ -215,6 +215,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   database_cleaner
+  devise
   execjs
   factory_girl_rails
   fakeweb

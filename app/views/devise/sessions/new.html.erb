@@ -1,0 +1,19 @@
+<div class="row-fluid">
+	<div class="offset1 span7">
+		<h2>Sign in</h2>
+
+		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		  <div class="form-inputs">
+		    <%= f.input :email, :required => false, :input_html =>{ :class => "span12"}, :autofocus => true %>
+		    <%= f.input :password, :required => false %>
+		    <%= f.input :remember_me, :as => :boolean, :item_wrapper_class => 'inline' if devise_mapping.rememberable? %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.button :submit, "Sign in", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+</div>

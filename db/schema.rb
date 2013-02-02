@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131192113) do
+ActiveRecord::Schema.define(:version => 20130202160543) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130131192113) do
   end
 
   create_table "equipment", :force => true do |t|
+    t.string   "name"
     t.string   "manufacturer"
     t.string   "model"
     t.string   "serial_number"
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130131192113) do
     t.string   "code"
     t.string   "description"
     t.integer  "test_suite_id"
+    t.integer  "measure_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -81,8 +83,9 @@ ActiveRecord::Schema.define(:version => 20130131192113) do
   create_table "measures", :force => true do |t|
     t.string   "code"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "samples", :force => true do |t|
@@ -105,23 +108,36 @@ ActiveRecord::Schema.define(:version => 20130131192113) do
   end
 
   create_table "standards", :force => true do |t|
-    t.string   "name"
-    t.decimal  "min_tolerence"
+    t.string   "code"
+    t.string   "property"
+    t.decimal  "min_tolerance",           :precision => 7, :scale => 2
     t.integer  "min_tolerance_action_id"
-    t.decimal  "max_tolerance"
+    t.decimal  "max_tolerance",           :precision => 7, :scale => 2
     t.integer  "max_tolerance_action_id"
     t.integer  "measure_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   create_table "technicians", :force => true do |t|
-    t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "technicians", ["email"], :name => "index_technicians_on_email", :unique => true
+  add_index "technicians", ["reset_password_token"], :name => "index_technicians_on_reset_password_token", :unique => true
 
   create_table "test_standards", :force => true do |t|
     t.integer  "test_suite_id"

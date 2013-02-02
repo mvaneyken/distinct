@@ -1,7 +1,18 @@
 Distinct::Application.routes.draw do
+  devise_for :technicians
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  devise_for :technicians
+  authenticated :technician do
+    namespace :lab do
+      
+    end
+  end
+  match :lab, :to => 'pages#landing'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

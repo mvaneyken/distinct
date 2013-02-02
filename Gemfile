@@ -11,15 +11,16 @@ group :assets do
   gem 'coffee-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-  gem 'bootstrap-sass'
   gem 'uglifier'
 end
 gem 'quiet_assets', :group => :development
 
+gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 gem 'activeadmin'                   # Back Office straight 'out of the box'
 gem 'meta_search', '>= 1.1.0.pre'   # Required for activeadmin
+gem 'devise'                        # User authentication
 gem 'high_voltage'							    # Facilitates 'static' pages
 gem 'rails_config'                  # Manage settings in convenient (public vs private) fashion
 gem 'simple_form'                   # Manage forms

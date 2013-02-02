@@ -1,13 +1,7 @@
-class DeviseCreateAdminUsers < ActiveRecord::Migration
-  def migrate(direction)
-    super
-    # Create a default user
-    AdminUser.create!(:email => 'admin@verajet.com', :password => 'verajet.com', :password_confirmation => 'verajet.com') if direction == :up
-    AdminUser.create!(:email => 'mvaneyken@mvesolutions.com', :password => 'password', :password_confirmation => 'password') if direction == :up
-  end
-
-  def change
-    create_table(:admin_users) do |t|
+class AddDeviseToTechnicians < ActiveRecord::Migration
+  def self.up
+    remove_column :technicians, :email
+    change_table(:technicians) do |t|
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
@@ -41,13 +35,20 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
 
-      t.timestamps
+      # Uncomment below if timestamps were not included in your original model.
+      # t.timestamps
     end
 
-    add_index :admin_users, :email,                :unique => true
-    add_index :admin_users, :reset_password_token, :unique => true
-    # add_index :admin_users, :confirmation_token,   :unique => true
-    # add_index :admin_users, :unlock_token,         :unique => true
-    # add_index :admin_users, :authentication_token, :unique => true
+    add_index :technicians, :email,                :unique => true
+    add_index :technicians, :reset_password_token, :unique => true
+    # add_index :technicians, :confirmation_token,   :unique => true
+    # add_index :technicians, :unlock_token,         :unique => true
+    # add_index :technicians, :authentication_token, :unique => true
+  end
+
+  def self.down
+    # By default, we don't want to make any assumption about how to roll back a migration when your
+    # model already existed. Please edit below which fields you would like to remove in this migration.
+    raise ActiveRecord::IrreversibleMigration
   end
 end

@@ -12,6 +12,9 @@
 		<div class="row-fluid">
 			<%= render :partial => 'shared/sidebar' %>
 			<div class="span10">
+				<% flash.each do |name, msg| %>
+				  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+				<% end %>
 				<%= yield %>
 			</div>
 		</div>

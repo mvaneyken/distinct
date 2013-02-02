@@ -7,21 +7,17 @@
 				<span class="icon-bar"></span>
 			</a>
 			<%= link_to I18n.t('company.name'), :home, :class => "brand span2" %>
-			<div class="nav-collapse">
-				<ul class="nav">
-					<li class="divider-vertical"></li>
-					<li><%= link_to "stub1", '#' %></li>
-					<li><%= link_to "stub2", '#' %></li>
-					<li class="divider-vertical"></li>
-					<li><%= link_to "stub3", '#' %></li>
-				</ul>
-			</div>
+			<%= render partial: 'lab/shared/navmenu' %>
 			<div class="nav pull-right btn-group" style="margin-top: 7px;"><!-- Keep the style for spacing -->
 				<%= link_to t('session.signin.label'), "#", :class => "btn btn-inverse" %>
 				<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><%= link_to t('session.signin.label'), "#" %></li>
-					<li><%= link_to t('admin.label'), '/admin/login' %></li>
+					<% if technician_signed_in? %>
+					<li><%= link_to t('session.signout.lab'), destroy_technician_session_path, :method => :delete %></li>
+					<% else %>
+					<li><%= link_to t('session.signin.lab'), new_technician_session_path %></li>
+					<% end %>
+					<li><%= link_to t('session.signin.admin'), '/admin/login' %></li>
 				</ul>
 			</div>
 		</div>
