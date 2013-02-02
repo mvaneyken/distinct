@@ -1,4 +1,6 @@
-ActiveAdmin.register AdminUser do     
+ActiveAdmin.register AdminUser do   
+  menu parent: I18n.t('admin.security')
+    
   index do                            
     column :email                     
     column :current_sign_in_at        

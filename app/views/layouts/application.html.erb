@@ -7,8 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<%= render 'shared/navbar' %>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<%= render :partial => 'shared/sidebar' %>
+			<div class="span10">
+				<%= yield %>
+			</div>
+		</div>
+		<%= render 'shared/footer' %>
+	</div>
 </body>
 </html>

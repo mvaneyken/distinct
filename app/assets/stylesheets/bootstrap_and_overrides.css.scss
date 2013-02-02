@@ -1,0 +1,13 @@
+/* Customize Bootstrap settings */
+$companyColor: #1b83ef;
+$navbarBackground: $companyColor;
+$navbarLinkColor: black;
+
+/* Get Bootstrap */
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+/* css & html tweaks */
+body { 
+	padding-top: 60px;
+	}
