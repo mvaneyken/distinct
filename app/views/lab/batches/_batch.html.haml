@@ -1,0 +1,12 @@
+%tr
+  %td
+    =batch.item_master.code
+  %td
+    =batch.item_master.description
+  %td
+    =check_box_tag :pass, '1', batch.pass, disabled: true
+  %td
+    =batch.created_at.strftime('%Y/%m/%d %H:%M')
+  %td
+    =link_to "Edit", edit_lab_batch_path(batch), class: 'btn btn-mini'
+    =link_to "Destroy", lab_batch_path(batch), method: :delete, confirm: "Really delete?", class: 'btn btn-mini btn-danger'

@@ -4,10 +4,16 @@ class ItemMaster < ActiveRecord::Base
   belongs_to :item_type
   belongs_to :test_suite
   
+  has_many :batches
+  
   before_validation :standardize
   
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true
+  
+  def code_description
+    "#{self.code} : #{self.description}"
+  end
   
   private
   
