@@ -1,7 +1,14 @@
 /* Customize Bootstrap settings */
 $companyColor: #1b83ef;
+$companyColorLighter: #90bdec;
+$companyColorDarker: #1B45F0;
 $navbarBackground: $companyColor;
+$navbarBackgroundHighlight: $companyColorLighter;
 $navbarLinkColor: black;
+$navbarLinkColorHover: white;
+/* $navbarLinkColorActive: green; */
+$navbarLinkBackgroundHover: $companyColor;
+/* $navbarLinkBackgroundActive: yellow; */
 
 /* Get Bootstrap */
 @import "bootstrap";
