@@ -17,6 +17,7 @@ gem 'quiet_assets', :group => :development
 
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem "haml-rails"
 
 gem 'activeadmin'                   # Back Office straight 'out of the box'
 gem 'meta_search', '>= 1.1.0.pre'   # Required for activeadmin

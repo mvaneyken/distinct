@@ -1,0 +1,20 @@
+#flash
+  - if flash
+    - flash.each do |kind, message|
+      - message = render_flash_message(message)
+      - if kind == :success
+        .alert.alert-success
+          =link_to raw("&times"), "#", class: "close", "data-dismiss"=>"alert"
+          %p= message
+      - if kind == :notice
+        .alert.alert-info
+          =link_to raw("&times"), "#", class: "close", "data-dismiss"=>"alert"
+          %p= message
+      - if kind == :alert
+        .alert
+          =link_to raw("&times"), "#", class: "close", "data-dismiss"=>"alert"
+          %p= message
+      - if kind == :error
+        .alert.alert-error
+          =link_to raw("&times"), "#", class: "close", "data-dismiss"=>"alert"
+          %p= message
