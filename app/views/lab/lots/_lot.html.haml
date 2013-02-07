@@ -1,0 +1,9 @@
+%tr
+  %td= link_to lot.id, lab_lot_path(lot)
+  %td= lot.item_master.code
+  %td= lot.item_master.description
+  %td= check_box_tag :pass, '1', lot.pass, disabled: true
+  %td= lot.created_at.strftime('%Y/%m/%d %H:%M')
+  %td
+    =link_to "Edit", edit_lab_lot_path(lot), class: 'btn btn-mini'
+    =link_to "Destroy", lab_lot_path(lot), method: :delete, confirm: "Really delete?", class: 'btn btn-mini btn-danger'

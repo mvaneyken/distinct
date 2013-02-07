@@ -1,13 +1,14 @@
 .row.span11
-  %h3.section-header Batches
+  %h3.section-header Lots
   %table.table.table-striped
     %thead
       %tr
+        %th Id
         %th Item
         %th Description
         %th Passed
         %th Date
         %th Actions
     %tbody
-      = render partial: 'batch', collection: @batches
-    = paginate @batches, :theme => 'twitter-bootstrap'     
+      = render partial: 'lot', collection: @lots
+    = paginate @lots, :theme => 'twitter-bootstrap'     

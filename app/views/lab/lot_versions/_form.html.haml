@@ -1,0 +1,18 @@
+= simple_form_for [:lab, @lot, @lot_version], html: { class: "form-horizontal" } do |f|
+  = f.input :comments, input_html: {class: 'span12'}, placeholder: 'Brief notes ...'
+  
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Code
+        %th Equipment
+        %th Reading
+        %th Pass
+        %th Comment
+    %tbody
+      = render partial: 'sample', collection: @lot_version.samples
+  
+  .form-actions
+    = f.submit 'Update', :class => "btn btn-primary"
+    = link_to "Cancel", edit_lab_lot_path(@lot), :class => "btn"
+  

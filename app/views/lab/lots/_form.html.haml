@@ -1,0 +1,18 @@
+= simple_form_for @lot, url: url, html: { class: "form-horizontal" } do |f|
+
+  = f.association :item_master, collection: ItemMaster.all.map {|o| [o.code_description, o.id]}, input_html: {class: 'span6'}
+  = f.input :comments, input_html: {class: 'span12'}, placeholder: 'Brief notes ...'
+  
+  .links
+    -if @lot.persisted?
+      - if @lot.lot_versions.count > 0
+        = render partial: 'lot_versions'
+      %p.muted.pull-right
+        %em
+          = @lot.item_master.has_test_suite? ? "#{@lot.item_master.code} uses test suite #{@lot.item_master.test_suite.name} with #{@lot.item_master.test_suite.test_standards.count} tests." : ''
+      = link_to "Add a version", new_lab_lot_lot_version_path(@lot), class: 'btn btn-small btn-primary'
+
+  .form-actions
+    = f.submit (@lot.persisted? ? 'Update' : 'Add'), :class => "btn btn-primary"
+    = link_to "Cancel", :back, :class => "btn"
+    

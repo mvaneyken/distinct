@@ -8,7 +8,9 @@ Distinct::Application.routes.draw do
   devise_for :technicians
   authenticated :technician do
     namespace :lab do
-      resources :batches
+      resources :lots do
+        resources :lot_versions
+      end
     end
   end
   match :lab, :to => 'pages#landing'

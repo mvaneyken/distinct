@@ -3,8 +3,9 @@ class ItemMaster < ActiveRecord::Base
   
   belongs_to :item_type
   belongs_to :test_suite
+  belongs_to :measure
   
-  has_many :batches
+  has_many :lots
   
   before_validation :standardize
   
@@ -13,6 +14,10 @@ class ItemMaster < ActiveRecord::Base
   
   def code_description
     "#{self.code} : #{self.description}"
+  end
+  
+  def has_test_suite?
+    ( self.test_suite_id )
   end
   
   private

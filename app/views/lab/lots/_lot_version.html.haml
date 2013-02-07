@@ -1,0 +1,5 @@
+%tr
+  %td= lot_version.version
+  %td= lot_version.updated_at.strftime('%Y/%m/%d %H:%M')
+  %td= lot_version.comments
+  %td= link_to "Edit", edit_lab_lot_lot_version_path(@lot, lot_version), class: 'btn btn-mini'

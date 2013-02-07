@@ -25,6 +25,7 @@ gem 'devise'                        # User authentication
 gem 'high_voltage'							    # Facilitates 'static' pages
 gem 'rails_config'                  # Manage settings in convenient (public vs private) fashion
 gem 'simple_form'                   # Manage forms
+gem "cocoon"									      # Nested models in forms
 gem "transitions", ">= 0.1.1", :require => ["transitions", "active_model/transitions"]
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'

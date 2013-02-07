@@ -1,0 +1,15 @@
+%tr
+  %td
+    = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][id]", sample.id
+    = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][standard_id]", sample.standard_id
+    = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][technician_id]", sample.technician_id
+    = sample.standard_code
+  %td 
+    = select_tag "[lot_version][samples_attributes][#{sample_counter}][equipment_id]", options_from_collection_for_select(sample.standard.standard_equipments, :equipment_id, :name)
+  %td
+    = text_field_tag "[lot_version][samples_attributes][#{sample_counter}][value]", sample.value
+    = "u/m"
+  %td
+    = check_box_tag "[lot_version][samples_attributes][#{sample_counter}][pass]", '1', sample.pass, disabled: true
+  %td
+    = text_field_tag "[lot_version][samples_attributes][#{sample_counter}][comments]", sample.comments

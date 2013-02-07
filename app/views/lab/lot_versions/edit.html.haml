@@ -1,0 +1,5 @@
+.row.span11
+  %h3.section-header
+    .pull-right Test Suite #{@lot.item_master.test_suite.name}
+    = "Lot ##{@lot_version.lot_id}, version ##{@lot_version.version}"
+  = render partial: 'form'

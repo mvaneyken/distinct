@@ -18,6 +18,11 @@ ActiveAdmin.register Standard do
       row.max_tolerance_action_id ? row.max_tolerance_action.colour_name : ''
     end
     column :measure
+    column "Equipment" do |row|
+      list = []
+      row.standard_equipments.each {|se| list << se.equipment.name}
+      list.join(', ')
+    end
     default_actions
   end
   
@@ -29,6 +34,14 @@ ActiveAdmin.register Standard do
       f.input :min_tolerance_action, collection: ToleranceAction.all.map{|o| [o.colour_action, o.id]}
       f.input :max_tolerance
       f.input :max_tolerance_action, collection: ToleranceAction.all.map{|o| [o.colour_action, o.id]}
+    end
+    f.inputs do
+      f.has_many :standard_equipments do |se|
+        se.input :equipment, collection: Equipment.all.map {|o| [o.name, o.id]}
+        unless se.object.nil?
+          se.input :_destroy, as: :boolean, label: "Destroy?"
+        end
+      end
     end
     f.buttons
   end
