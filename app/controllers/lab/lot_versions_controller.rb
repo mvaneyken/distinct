@@ -3,6 +3,7 @@ class Lab::LotVersionsController < Lab::BaseController
   
   def new
     @lot_version = @lot.lot_versions.build(technician_id: current_technician.id)
+    @lot_version.issue_version_number
     test_suite = @lot.item_master.test_suite
     if test_suite
       @lot_version.prepare_samples(test_suite)

@@ -32,7 +32,7 @@ ActiveAdmin.register TestSuite do
     panel "Standards" do
       table_for s.test_standards do
         column "Code" do |row|
-          row.standard.code
+          link_to row.standard.code, admin_standard_path(row.id)
         end
         column "Property" do |row|
           row.standard.property

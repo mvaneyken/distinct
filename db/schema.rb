@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203164307) do
+ActiveRecord::Schema.define(:version => 20130211213917) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20130203164307) do
     t.string   "comments"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "lot_number"
   end
 
   create_table "measures", :force => true do |t|
@@ -104,9 +105,10 @@ ActiveRecord::Schema.define(:version => 20130203164307) do
     t.decimal  "value"
     t.boolean  "pass"
     t.string   "comments"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "lot_version_id"
+    t.integer  "data_version_id"
   end
 
   create_table "standard_equipments", :force => true do |t|
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20130203164307) do
   add_foreign_key "lots", "item_masters", :name => "lots_item_master_id_fk"
 
   add_foreign_key "samples", "equipment", :name => "samples_equipment_id_fk"
+  add_foreign_key "samples", "lot_versions", :name => "samples_data_version_id_fk", :column => "data_version_id"
   add_foreign_key "samples", "lot_versions", :name => "samples_lot_version_id_fk"
   add_foreign_key "samples", "standards", :name => "samples_standard_id_fk"
   add_foreign_key "samples", "technicians", :name => "samples_technician_id_fk"

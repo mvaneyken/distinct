@@ -1,5 +1,9 @@
 module ApplicationHelper
   
+  def zero_blank(number)
+    number == 0 ? '' : number_to_human(number)
+  end
+  
   def render_flash_message(message)
     return if message.blank?
 

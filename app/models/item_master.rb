@@ -5,12 +5,14 @@ class ItemMaster < ActiveRecord::Base
   belongs_to :test_suite
   belongs_to :measure
   
-  has_many :lots
+  has_many :lots, dependent: :destroy
   
   before_validation :standardize
   
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true
+  
+  scope :active, where(self.arel_table[:test_suite_id].not_eq(nil))
   
   def code_description
     "#{self.code} : #{self.description}"

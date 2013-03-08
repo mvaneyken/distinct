@@ -24,5 +24,5 @@ en:
   standards:
     errors:
       tolerance_reqd: "Tolerance is required."
-      min_action_redundant: "You've requested a 'below minimum tolerance' action, but haven't specified a tolerance."
-      max_action_redundant: "You've requested a 'above maximum tolerance' action, but haven't specified a tolerance."
+      min_action_redundant: "You've requested an action, but haven't specified a tolerance."
+      max_action_redundant: "You've requested an action, but haven't specified a tolerance."

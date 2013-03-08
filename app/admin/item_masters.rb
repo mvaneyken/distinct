@@ -7,6 +7,9 @@ ActiveAdmin.register ItemMaster do
     column :item_type
     column :description
     column :test_suite
+    column "Lots" do |row|
+      zero_blank row.lots.count
+    end
     default_actions
   end
   

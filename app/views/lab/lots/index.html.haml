@@ -3,11 +3,12 @@
   %table.table.table-striped
     %thead
       %tr
-        %th Id
+        %th.span1 Number
         %th Item
         %th Description
-        %th Passed
         %th Date
+        %th.span1 Versions
+        %th.span1 Passed
         %th Actions
     %tbody
       = render partial: 'lot', collection: @lots
