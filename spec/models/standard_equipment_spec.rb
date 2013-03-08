@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe StandardEquipment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should let us make add a new one" do
+    standard_equipment = FactoryGirl.create(:standard_equipment)
+    standard_equipment.save.should be_true
+  end
 end

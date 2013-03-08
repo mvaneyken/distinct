@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe ToleranceAction do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should let us make add a new one" do
+    tolerance_action = FactoryGirl.create(:tolerance_action)
+    tolerance_action.save.should be_true
+  end  
 end
