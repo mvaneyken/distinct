@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Sample do
   describe "basic validations" do
     it "should let us make add a new one" do
-      sample = FactoryGirl.create(:sample)
-      sample.save.should be_true
+      @sample = FactoryGirl.build(:sample)
+      @sample.save.should be_true
     end
   end
   describe "functionality" do
@@ -21,7 +21,7 @@ describe Sample do
       sample_stub = @lot_version.samples.first.sample_results
       sample_stub[:standard_id].should_not be_nil
     end
-    xit "should set the data_version" do
+    it "should update value and comments" do
       assert (@lot_version.samples.count > 0)
       # Set up
       sample = @lot_version.samples.first
@@ -37,7 +37,45 @@ describe Sample do
       # Verify
       sample.value.should eq params[:value]
       sample.comments.should eq params[:comments]
+    end
+    it "should set the data version" do
+      # Set up
+      sample = @lot_version.samples.first
+      # Ensure clean test
+      assert_nil sample.data_version
+      # Execute
+      sample.stamp_data_version!
+      # Verify
+      sample.reload
       sample.data_version_id.should eq sample.lot_version_id
+    end
+    it "should fail if value is below tolerance" do
+      sample = @lot_version.samples.first
+      # Ensure clean test
+      assert_nil sample.pass
+      assert sample.standard.min_tolerance
+      # Execute
+      sample.value = (sample.standard.min_tolerance - 1)
+      sample.within_tolerance?.should be_false     
+    end
+    it "should fail if value is above tolerance" do
+      sample = @lot_version.samples.first
+      # Ensure clean test
+      assert_nil sample.pass
+      assert sample.standard.max_tolerance
+      # Execute
+      sample.value = (sample.standard.max_tolerance + 1)
+      sample.within_tolerance?.should be_false     
+    end
+    it "should pass if value is within tolerance" do
+      sample = @lot_version.samples.first
+      # Ensure clean test
+      assert_nil sample.pass
+      assert sample.standard.min_tolerance
+      assert sample.standard.max_tolerance
+      # Execute
+      sample.value = ((sample.standard.min_tolerance + sample.standard.max_tolerance) / 2)
+      sample.within_tolerance?.should be_true
     end
   end
 end

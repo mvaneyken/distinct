@@ -13,6 +13,8 @@ en:
   company:
     name: "Vera Inkjet"
     url: "http://verainkjet.com"
+  lot_version:
+    status: "%{passed} / %{samples}"
   session:
     signin:
       label: "Log in"

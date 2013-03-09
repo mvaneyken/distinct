@@ -10,7 +10,7 @@
       %th Comment
   %tbody
     - current_version.samples.each do |sample|
-      %tr
+      %tr{class: result_class(sample)}
         %td= sample.standard_property
         %td= sample.data_version.try(:version)
         %td= sample.value ? "#{sample.value} #{sample.unit_of_measure}" : ""

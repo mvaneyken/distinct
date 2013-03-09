@@ -40,20 +40,5 @@ describe LotVersion do
         sample.data_version_id.should eq @lot_version.id
       end
     end
-    xit "should be version stamped if changed" do
-      # Set up
-      @lot_version2 = FactoryGirl.create(:lot_version, lot: @lot)
-      @lot_version2.prepare_samples(@test_suite)
-      @lot_version2.save!
-      # Ensure clean start
-      @lot_version2.samples.each do |sample|
-        assert_not_equal @lot_version.id, sample.data_version_id
-      end
-      # Execute
-      sample = @lot_version2.samples.last
-      new_value = sample.value ||= 99
-      sample.update_attributes({value: new_value})
-      sample.data_version_id.should eq @lot_version2.id
-    end
   end
 end

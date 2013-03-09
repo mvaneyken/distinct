@@ -1,6 +1,7 @@
 %tr
   %td= lot_version.version
   %td= lot_version.updated_at.strftime('%Y/%m/%d %H:%M')
+  %td= t('lot_version.status', passed: lot_version.samples.passed.count, samples: lot_version.samples.count)
   %td= lot_version.comments
   %td
     = link_to "Show", '#', class: 'btn btn-mini btn-info show-results', data: {lot_id: lot_version.lot_id, lot_version_id: lot_version.id}

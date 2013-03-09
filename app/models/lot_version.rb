@@ -33,5 +33,5 @@ class LotVersion < ActiveRecord::Base
   def issue_version_number
     self.version = self.lot.lot_versions.count + 1 if !self.version
   end
-  
+    
 end
