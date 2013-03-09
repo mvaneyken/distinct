@@ -35,7 +35,7 @@ class LotVersion < ActiveRecord::Base
   end
   
   def passed?
-    ( self.samples && self.samples.passed.count >= self.samples.count )
+    ( self.samples.present? && self.samples.passed.count >= self.samples.count )
   end
       
 end

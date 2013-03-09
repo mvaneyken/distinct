@@ -22,7 +22,7 @@ class Lot < ActiveRecord::Base
   end
   
   def passed?
-    self.lot_versions.last.passed? if self.lot_versions.present?
+    (self.lot_versions.present? && self.lot_versions.last.passed?)
   end
   
   private
