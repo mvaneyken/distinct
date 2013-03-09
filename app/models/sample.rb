@@ -17,7 +17,7 @@ class Sample < ActiveRecord::Base
   # Class
   # -----------------------------
   
-  scope :passed, where("pass is not null")
+  scope :passed, where("pass")
   
   def self.last_sample(lot_id, standard_id)
     Sample.where("lot_version_id in (select id from lot_versions where lot_id = #{lot_id} order by version DESC limit(1)) and standard_id = #{standard_id}").first
