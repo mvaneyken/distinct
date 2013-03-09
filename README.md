@@ -11,4 +11,4 @@ Quality Control Application for Ink Manufacturers
 WARNING
 -------
 
-The app is very, very far from primetime.
+The app is in beta.
