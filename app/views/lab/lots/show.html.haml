@@ -1,4 +1,29 @@
-.row.span11
-  %h3.section-header Lot
-  %p.text-warning This is a stub and will be changed to a display only view!
-  = render partial: 'form', locals: {url: lab_lot_path(@lot)} # MvE Stub
+.row.span10
+  %h2.section-header
+    %span.pull-right= @lot.created_at.strftime('%Y/%m/%d %H:%M')
+    = "#{@lot.lot_number} : #{@lot.item_master.code} - #{@lot.item_master.description}"
+  - @lot.lot_versions.each do |lot_version|  
+    %h4.text-info
+      %span.pull-right= lot_version.updated_at.strftime('%Y/%m/%d %H:%M')
+      = "#{lot_version.version} : #{lot_version.comments}"
+    %table.table
+      %thead
+        %tr
+          %th.span2 Property
+          %th.span2 Results from
+          %th.span2 Reading
+          %th.span1 Pass
+          %th.span2 Equipment
+          %th.span2 Comment
+      %tbody
+      - lot_version.samples.each do |sample|
+        %tr
+          %td= sample.standard_property
+          %td= sample.data_version ? "version ##{sample.data_version_id}" : ''
+          %td= "#{sample.value} #{sample.unit_of_measure}"
+          %td= check_box_tag :pass, '1', sample.pass, disabled: true
+          %td= sample.equipment.name
+          %td= sample.comments
+      
+
+  

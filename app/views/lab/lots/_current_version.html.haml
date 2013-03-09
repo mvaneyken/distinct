@@ -1,0 +1,19 @@
+%h4.text-info= "Version #{current_version.version} results"
+%table.table.table-condensed
+  %thead
+    %tr
+      %th Property
+      %th Results from
+      %th Reading
+      %th Pass
+      %th Equipment
+      %th Comment
+  %tbody
+    - current_version.samples.each do |sample|
+      %tr
+        %td= sample.standard_property
+        %td= sample.data_version.try(:version)
+        %td= sample.value ? "#{sample.value} #{sample.unit_of_measure}" : ""
+        %td= check_box_tag :pass, '1', sample.pass, disabled: true
+        %td= sample.equipment.name 
+        %td= sample.comments

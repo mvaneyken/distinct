@@ -1,5 +1,5 @@
 class Sample < ActiveRecord::Base
-  attr_accessible :lot_id, :standard_id, :value, :comments, :equipment_id, :technician_id, :data_version_id, :pass
+  attr_accessible :standard_id, :value, :comments, :equipment_id, :technician_id, :data_version_id, :pass
   
   belongs_to :lot_version
   belongs_to :data_version, class_name: "LotVersion"
@@ -12,10 +12,16 @@ class Sample < ActiveRecord::Base
   delegate :version, to: :data_version, allow_nil: true, prefix: :data_version
   delegate :unit_of_measure, to: :standard
   
+  # Class
+  # -----------------------------
+  
   def self.last_sample(lot_id, standard_id)
-    Sample.where(lot_id: lot_id, standard_id: standard_id).order('lot_version_id DESC').limit(1)
+    Sample.where("lot_version_id in (select id from lot_versions where lot_id = #{lot_id} order by version DESC limit(1)) and standard_id = #{standard_id}").first
   end
   
+  # Instance
+  # -----------------------------
+
   def sample_results
     {
       standard_id: self.standard_id, 
@@ -28,9 +34,9 @@ class Sample < ActiveRecord::Base
       }
   end
   
-  def update_attributes(attributes)
-    attributes = attributes.merge({data_version_id: lot_version_id}) if !attributes[:data_version_id]
-    super
+  def stamp_data_version!
+    self.data_version_id = self.lot_version_id
+    self.save!
   end
-    
+  
 end

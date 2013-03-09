@@ -5,9 +5,13 @@
     = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][technician_id]", sample.technician_id
     = sample.standard_property
   %td
-    = sample.data_version ? "version ##{sample.data_version_version}" : ''
+    = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][data_version_id]", sample.data_version_id
+    = sample.data_version ? "version ##{sample.data_version.version}" : ''
   %td
-    = text_field_tag "[lot_version][samples_attributes][#{sample_counter}][value]", sample.value, class: 'input-mini'
+    = hidden_field_tag "[stamp_row][#{sample_counter}]", nil
+    = text_field_tag "[lot_version][samples_attributes][#{sample_counter}][value]", sample.value, 
+      class: 'input-mini set-version', 
+      data: {row: sample_counter, id: sample.id ||= 0}
     = sample.unit_of_measure
   %td
     = check_box_tag "[lot_version][samples_attributes][#{sample_counter}][pass]", '1', sample.pass, disabled: true

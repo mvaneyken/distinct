@@ -1,5 +1,5 @@
 = simple_form_for [:lab, @lot, @lot_version], html: { class: "form-horizontal" } do |f|
-  = f.input :comments, input_html: {class: 'span12'}, placeholder: 'Brief notes ...'
+  = f.input :comments, input_html: {class: 'span12'}, placeholder: 'Brief notes ...', autofocus: true
   
   %table.table.table-condensed
     %thead
@@ -15,5 +15,4 @@
   
   .form-actions
     = f.submit 'Update', :class => "btn btn-primary"
-    = link_to "Cancel", edit_lab_lot_path(@lot), :class => "btn"
   

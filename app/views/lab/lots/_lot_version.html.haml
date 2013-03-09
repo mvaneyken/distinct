@@ -2,4 +2,8 @@
   %td= lot_version.version
   %td= lot_version.updated_at.strftime('%Y/%m/%d %H:%M')
   %td= lot_version.comments
-  %td= link_to "Edit", edit_lab_lot_lot_version_path(@lot, lot_version), class: 'btn btn-mini'
+  %td
+    = link_to "Show", '#', class: 'btn btn-mini btn-info show-results', data: {lot_id: lot_version.lot_id, lot_version_id: lot_version.id}
+    = link_to "Edit", edit_lab_lot_lot_version_path(@lot, lot_version), class: 'btn btn-mini'
+    - if lot_version.eql? @lot.lot_versions.last
+      =link_to "Delete", lab_lot_lot_version_path(@lot, lot_version), method: :delete, confirm: "Really delete?", class: 'btn btn-mini btn-danger'

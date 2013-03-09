@@ -40,7 +40,7 @@ describe LotVersion do
         sample.data_version_id.should eq @lot_version.id
       end
     end
-    it "should be version stamped if changed" do
+    xit "should be version stamped if changed" do
       # Set up
       @lot_version2 = FactoryGirl.create(:lot_version, lot: @lot)
       @lot_version2.prepare_samples(@test_suite)

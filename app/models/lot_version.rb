@@ -3,7 +3,7 @@ class LotVersion < ActiveRecord::Base
   attr_accessible :samples_attributes
   
   belongs_to :lot
-  has_many :samples
+  has_many :samples, order: :created_at, dependent: :destroy
   belongs_to :technician
   accepts_nested_attributes_for :samples, allow_destroy: true
   

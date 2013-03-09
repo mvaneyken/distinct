@@ -34,6 +34,14 @@ class Lab::LotsController < Lab::BaseController
   
   def update
     if @lot.update_attributes(params[:lot])
+      redirect_to new_lab_lot_lot_version_path(@lot), flash: {success: 'Lot was successfully updated.'}
+    else
+      render :edit
+    end
+  end
+  
+  def update_plus_version
+    if @lot.update_attributes(params[:lot])
       redirect_to lab_lot_path(@lot), flash: {success: 'Lot was successfully updated.'}
     else
       render :edit

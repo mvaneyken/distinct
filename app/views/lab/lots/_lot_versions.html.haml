@@ -1,10 +1,10 @@
 %table.table.table-condensed
   %thead
     %tr
-      %th{style: 'width:10%'} Version
-      %th{style: 'width:15%'} Updated
-      %th{style: 'width:65%'} Comment
-      %th{style: 'width:10%'} Actions
+      %th.span1 Version
+      %th.span2 Updated
+      %th.span5 Comment
+      %th.span2 Actions
   %tbody
     = render partial: 'lot_version', collection: @lot.lot_versions
     

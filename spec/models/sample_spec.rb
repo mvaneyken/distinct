@@ -21,7 +21,7 @@ describe Sample do
       sample_stub = @lot_version.samples.first.sample_results
       sample_stub[:standard_id].should_not be_nil
     end
-    it "should set the data_version" do
+    xit "should set the data_version" do
       assert (@lot_version.samples.count > 0)
       # Set up
       sample = @lot_version.samples.first

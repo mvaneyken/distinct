@@ -17,6 +17,7 @@ describe 'enter lab results' do
     describe "should record the lot header" do
       before(:each) do
         @original_lot_count = Lot.count
+        fill_in "Lot number", with: "#{Lot.count}-001"
         select @item_master.code_description, from: "Item master"
         fill_in "Comments", with: "This is a comment"
         click_button "Add"

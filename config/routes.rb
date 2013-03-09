@@ -8,8 +8,11 @@ Distinct::Application.routes.draw do
   devise_for :technicians
   authenticated :technician do
     namespace :lab do
+      post :update_plus_version
       resources :lots do
-        resources :lot_versions
+        resources :lot_versions do
+          get :show_results
+        end
       end
     end
   end
