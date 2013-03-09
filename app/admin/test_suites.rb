@@ -2,10 +2,19 @@ ActiveAdmin.register TestSuite do
   config.sort_order = "name_asc"
   menu parent: I18n.t('admin.recipes'), priority: 10
   
+  member_action :duplicate, :method => :put do
+    source = TestSuite.find(params[:id])
+    @test_suite = TestSuite.duplicate(source)
+    redirect_to admin_test_suites_path, :notice => "#{@test_suite.name} created"
+  end
+  
   index do
     column :name
     column 'Standards' do |row|
       blank_when_zero row.test_standards.count
+    end
+    column 'Duplicate' do |row|
+      link_to "Duplicate", duplicate_admin_test_suite_path(row), method: :put
     end
     default_actions
   end
@@ -25,12 +34,12 @@ ActiveAdmin.register TestSuite do
     f.buttons
   end
   
-  show do |s|
+  show do 
     attributes_table do
       row :name
     end
-    panel "Standards" do
-      table_for s.test_standards do
+    panel " Test Standards" do
+      table_for test_suite.test_standards do 
         column "Code" do |row|
           link_to row.standard.code, admin_standard_path(row.id)
         end
@@ -51,6 +60,6 @@ ActiveAdmin.register TestSuite do
         end
       end
     end
-end
+  end
   
 end
