@@ -4,7 +4,7 @@
   %td= lot.item_master.description
   %td= lot.created_at.strftime('%Y/%m/%d %H:%M')
   %td{style: 'text-align: right;'}= zero_blank lot.lot_versions.count
-  %td= check_box_tag :pass, '1', lot.pass, disabled: true
+  %td= check_box_tag :pass, '1', lot.passed?, disabled: true
   %td
     =link_to "Edit", edit_lab_lot_path(lot), class: 'btn btn-mini'
     =link_to "Delete", lab_lot_path(lot), method: :delete, confirm: "Really delete?", class: 'btn btn-mini btn-danger'

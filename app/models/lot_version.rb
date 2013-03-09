@@ -33,5 +33,9 @@ class LotVersion < ActiveRecord::Base
   def issue_version_number
     self.version = self.lot.lot_versions.count + 1 if !self.version
   end
-    
+  
+  def passed?
+    ( self.samples && self.samples.passed.count >= self.samples.count )
+  end
+      
 end
