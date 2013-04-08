@@ -8,7 +8,11 @@ Welcome to distinct
 
 Quality Control Application for Ink Manufacturers
 
-WARNING
--------
+Architecture
+----------------------
 
-The app is in beta.
+Ruby 1.9.3
+Rails 3.x
+Postgresql 9.x
+Bundler 1.2
+Git 1.x
