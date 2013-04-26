@@ -10,4 +10,8 @@ module LotHelper
     end
   end
   
+  def tolerance(standard)
+    "[#{standard.min_tolerance} : #{standard.max_tolerance}]"
+  end
+  
 end

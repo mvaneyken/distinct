@@ -11,7 +11,8 @@
         %tr
           %th.span2 Property
           %th.span2 Results from
-          %th.span2 Reading
+          %th.span1 Tolerance
+          %th.span1 Reading
           %th.span1 Pass
           %th.span2 Equipment
           %th.span2 Comment
@@ -20,6 +21,7 @@
         %tr{class: result_class(sample)}
           %td= sample.standard_property
           %td= sample.data_version ? "version ##{sample.data_version_id}" : ''
+          %td= tolerance sample.standard
           %td= "#{sample.value} #{sample.unit_of_measure}"
           %td= check_box_tag :pass, '1', sample.pass, disabled: true
           %td= sample.equipment.name
