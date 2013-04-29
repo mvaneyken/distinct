@@ -29,6 +29,7 @@ gem "cocoon"									      # Nested models in forms
 gem "transitions", ">= 0.1.1", :require => ["transitions", "active_model/transitions"]
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'rails3-jquery-autocomplete'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'

@@ -1,6 +1,11 @@
 ActiveAdmin.register ToleranceAction do
   menu parent: I18n.t('admin.references'), priority: 40
   
+  collection_action :autocomplete_admin_tolerance_action_message do
+    @tolerance_actions = ToleranceAction.where("message like '#{params[:term]}%'").limit(20)
+    render json: @tolerance_actions.map{|ta| {label: ta.message, id: ta.id}}
+  end
+  
   index do
     column :message
     column "Colour" do |row|

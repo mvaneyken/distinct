@@ -1,6 +1,11 @@
 Distinct::Application.routes.draw do
   devise_for :technicians
 
+  namespace :admin do
+    resources :template_actions do
+      get :autocomplete_admin_tolerance_action_message, on: :collection
+    end
+  end
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

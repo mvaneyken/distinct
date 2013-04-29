@@ -27,3 +27,30 @@
 // .active_admin       applies to any Active Admin namespace
 // .admin_namespace    applies to the admin namespace (eg: /admin)
 // .other_namespace    applies to a custom namespace named other (eg: /other)
+
+/* Autocomplete */
+.ui-helper-hidden-accessible {
+  display: none;
+}
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #f1f7f1; /* #FFF; */
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+  }
+}

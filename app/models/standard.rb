@@ -2,6 +2,9 @@ class Standard < ActiveRecord::Base
   attr_accessible :code, :property, :min_tolerance, :min_tolerance_action_id, :max_tolerance, :max_tolerance_action_id, :measure_id
   attr_accessible :standard_equipments_attributes
   
+  attr_accessor :min_tolerance_message, :max_tolerance_message
+  attr_accessible :min_tolerance_message, :max_tolerance_message
+  
   belongs_to :measure
   belongs_to :min_tolerance_action, class_name: 'ToleranceAction'
   belongs_to :max_tolerance_action, class_name: 'ToleranceAction'
@@ -34,6 +37,24 @@ class Standard < ActiveRecord::Base
   
   def can_delete?
     ( self.test_standards.empty? )
+  end
+  
+  def min_tolerance_message
+    self.min_tolerance_action_id ? self.min_tolerance_action.message : ''
+  end
+  
+  def min_tolerance_message=(value)
+    obj = ToleranceAction.find_by_message(value)
+    self.min_tolerance_action_id = obj ? obj.id : nil
+  end
+  
+  def max_tolerance_message
+    self.max_tolerance_action_id ? self.max_tolerance_action.message : ''
+  end
+  
+  def max_tolerance_message=(value)
+    obj = ToleranceAction.find_by_message(value)
+    self.max_tolerance_action_id = obj ? obj.id : nil
   end
   
   private
