@@ -32,16 +32,16 @@ ActiveAdmin.register Standard do
       end
     end
   end
-  
+
   form do |f|
     f.inputs do
       f.input :code
       f.input :property
       f.input :measure, collection: Measure.order(:code).map{|o| [o.code, o.id]}
       f.input :min_tolerance
-      f.input :min_tolerance_action, collection: ToleranceAction.all.map{|o| [o.colour_action, o.id]}
+      f.input :min_tolerance_message, as: :autocomplete, url: autocomplete_admin_tolerance_action_message_admin_tolerance_actions_path
       f.input :max_tolerance
-      f.input :max_tolerance_action, collection: ToleranceAction.all.map{|o| [o.colour_action, o.id]}
+      f.input :max_tolerance_message, as: :autocomplete, url: autocomplete_admin_tolerance_action_message_admin_tolerance_actions_path
     end
     f.inputs do
       f.has_many :standard_equipments do |se|

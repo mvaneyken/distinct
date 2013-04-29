@@ -10,6 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// gems
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -18,4 +19,6 @@
 //= require bootstrap-collapse
 //= require bootstrap-dropdown
 //= require cocoon
-//= require_tree .
+//= require autocomplete-rails
+// app
+//= require lot
