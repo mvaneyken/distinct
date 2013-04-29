@@ -4,6 +4,7 @@
     %tr
       %th Property
       %th Results from
+      %th Tolerance
       %th Reading
       %th Pass
       %th Equipment
@@ -13,6 +14,7 @@
       %tr{class: result_class(sample)}
         %td= sample.standard_property
         %td= sample.data_version.try(:version)
+        %td= tolerance sample.standard
         %td= sample.value ? "#{sample.value} #{sample.unit_of_measure}" : ""
         %td= check_box_tag :pass, '1', sample.pass, disabled: true
         %td= sample.equipment.name 

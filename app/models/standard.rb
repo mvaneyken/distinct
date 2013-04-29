@@ -32,6 +32,10 @@ class Standard < ActiveRecord::Base
     self.max_tolerance ? "#{self.max_tolerance} #{self.measure.code}" : ""
   end
   
+  def can_delete?
+    ( self.test_standards.empty? )
+  end
+  
   private
   
   def standardize

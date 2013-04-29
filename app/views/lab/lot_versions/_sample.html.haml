@@ -8,6 +8,8 @@
     = hidden_field_tag "[lot_version][samples_attributes][#{sample_counter}][data_version_id]", sample.data_version_id
     = sample.data_version ? "version ##{sample.data_version.version}" : ''
   %td
+    = tolerance sample.standard
+  %td
     = hidden_field_tag "[stamp_row][#{sample_counter}]", nil
     = text_field_tag "[lot_version][samples_attributes][#{sample_counter}][value]", sample.value, 
       class: 'input-mini set-version', 

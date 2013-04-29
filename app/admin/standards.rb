@@ -1,6 +1,7 @@
 ActiveAdmin.register Standard do
   config.sort_order = "code_asc"
   menu parent: I18n.t('admin.recipes'), priority: 20
+  actions :all, except: [:destroy]
   
   index do
     column :code
@@ -23,13 +24,20 @@ ActiveAdmin.register Standard do
       row.standard_equipments.each {|se| list << se.equipment.name}
       list.join(', ')
     end
-    default_actions
+    column("View") {|row| link_to "View", admin_standard_path(row)}
+    column("Edit") {|row| link_to "Edit", edit_admin_standard_path(row)}
+    column "Delete" do |row|
+      if row.can_delete?
+        link_to "Delete", admin_standard_path(row), action: :delete
+      end
+    end
   end
   
   form do |f|
     f.inputs do
       f.input :code
       f.input :property
+      f.input :measure, collection: Measure.order(:code).map{|o| [o.code, o.id]}
       f.input :min_tolerance
       f.input :min_tolerance_action, collection: ToleranceAction.all.map{|o| [o.colour_action, o.id]}
       f.input :max_tolerance
@@ -57,6 +65,14 @@ ActiveAdmin.register Standard do
       row :max_tolerance
       row "Above Max" do |row|
         v.max_tolerance_action_id ? v.max_tolerance_action.colour_action : ''
+      end
+    end
+    panel "Used in the following Test Suites:" do
+      paginated_collection(standard.test_standards.page(params[:page])) do
+        table_for collection do
+          column("Id")      {|test_standard| link_to test_standard.test_suite_id, admin_test_suite_path(test_standard.test_suite_id)}
+          column("Name")    {|test_standard| test_standard.test_suite.name}
+        end
       end
     end
   end
