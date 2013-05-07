@@ -1,0 +1,25 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{'data-toggle' => "collapse", 'data-target' => ".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to I18n.t('company.name'), :home, :class => "brand span2"
+      = render partial: 'installed_base/shared/navmenu'
+      = render partial: 'lab/shared/navmenu'
+      -# Keep the style for spacing
+      .nav.pull-right.btn-group{style: "margin-top: 7px;"}
+        = link_to t('session.signin.label'), "#", :class => "btn btn-inverse"
+        %a.btn.btn-inverse.dropdown-toggle{'data-toggle' => "dropdown", href: "#"}
+          %span.caret
+        %ul.dropdown-menu
+          - if representative_signed_in?
+            %li= link_to t('session.signout.representative'), destroy_representative_session_path, :method => :delete
+          - else
+            %li= link_to t('session.signin.representative'), new_representative_session_path
+          - if technician_signed_in?
+            %li= link_to t('session.signout.lab'), destroy_technician_session_path, :method => :delete
+          - else
+            %li= link_to t('session.signin.lab'), new_technician_session_path
+          %li= link_to t('session.signin.admin'), '/admin/login'

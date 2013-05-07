@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem "haml-rails"
 
 gem 'activeadmin'                   # Back Office straight 'out of the box'
+gem 'bootstrap-datepicker-rails'
 gem 'meta_search', '>= 1.1.0.pre'   # Required for activeadmin
 gem 'devise'                        # User authentication
 gem 'high_voltage'							    # Facilitates 'static' pages

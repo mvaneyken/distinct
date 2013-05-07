@@ -1,4 +1,6 @@
 Distinct::Application.routes.draw do
+  devise_for :representatives
+
   devise_for :technicians
 
   namespace :admin do
@@ -9,6 +11,15 @@ Distinct::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  devise_for :representatives
+  authenticated :representative do
+    namespace :installed_base do
+      resources :clients
+      resources :installations
+    end
+  end
+  match :installed_base, to: 'pages#landing'
   
   devise_for :technicians
   authenticated :technician do
@@ -21,7 +32,7 @@ Distinct::Application.routes.draw do
       end
     end
   end
-  match :lab, :to => 'pages#landing'
+  match :lab, to: 'pages#landing'
   
 
   # The priority is based upon order of creation:

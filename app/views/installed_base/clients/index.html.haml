@@ -1,0 +1,11 @@
+.row
+  %h3.section-header Clients
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.span2 Code
+        %th.span4 Name
+        %th Actions
+    %tbody
+      = render partial: 'client', collection: @clients
+    = paginate @clients, :theme => 'twitter-bootstrap'

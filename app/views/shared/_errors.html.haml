@@ -1,0 +1,7 @@
+.alert.alert-error.fade.in
+  %a.close{'data-dismiss' => "alert", href: "#"} &times;
+  = f.error_notification
+  %dl.dl-horizontal
+    - object.errors.messages.each_pair do |key, value|
+      %dt= object.class.human_attribute_name(key)
+      %dd= value

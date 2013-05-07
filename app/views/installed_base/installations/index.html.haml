@@ -1,0 +1,15 @@
+.row
+  %h3.section-header Installations
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Client
+        %th Printer
+        %th Ink System
+        %th Consumption
+        %th Function
+        %th Representative
+        %th Actions
+    %tbody
+      = render partial: 'installation', collection: @installations
+    = paginate @installations, :theme => 'twitter-bootstrap'

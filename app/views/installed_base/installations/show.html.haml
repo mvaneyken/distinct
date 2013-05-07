@@ -1,0 +1,43 @@
+.row
+  %h2.section-header= "#{@installation.client_code} : #{@installation.printer_model_name}"
+  
+  %p
+    %span.span2
+      = label_tag :client
+    %span.span10
+      = text_field_tag :client, "#{@installation.client_code} - #{@installation.client_name}", readonly: true, class: 'span8'
+  %p
+    %span.span2
+      = label_tag :representative_name
+    %span.span10  
+      = text_field_tag :representative_name, @installation.representative_name, readonly: true, class: 'span6'
+  %p
+    %span.span2
+      = label_tag :printer_model_name
+    %span.span10  
+      = text_field_tag :printer_model_name, @installation.printer_model_name, readonly: true, class: 'span2'
+  %p
+    %span.span2
+      = label_tag :ink_system_name
+    %span.span10  
+      = text_field_tag :ink_system_name, @installation.ink_system_name, readonly: true, class: 'span2'
+  %p
+    %span.span2
+      = label_tag :consumption_profile
+    %span.span10
+      = text_field_tag :consumption_profile, "#{@installation.consumption_profile_code} - #{@installation.consumption_profile_name}", readonly: true, class: 'span6'
+  %p
+    %span.span2
+      = label_tag :printer_function_name
+    %span.span10  
+      = text_field_tag :printer_function_name, @installation.printer_function_name, readonly: true, class: 'span2'
+  %p
+    %span.span2
+      = label_tag :location
+    %span.span10  
+      = text_field_tag :location, @installation.location, readonly: true, class: 'span6'
+  %p
+    %span.span2
+      = label_tag :installed_date
+    %span.span10  
+      = text_field_tag :installed_date, @installation.installed_date.strftime('%Y/%m/%d'), readonly: true, class: 'span2'
