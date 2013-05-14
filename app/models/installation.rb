@@ -1,3 +1,5 @@
+require 'csv'
+
 class Installation < ActiveRecord::Base
   
   attr_accessible :location, :installed_date
@@ -25,5 +27,24 @@ class Installation < ActiveRecord::Base
   delegate :name, to: :ink_system, prefix: true
   delegate :code, :name, to: :consumption_profile, prefix: true
   delegate :name, to: :printer_function, prefix: true
+  
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << [:client_code, :client_name, :printer_model_name, :ink_system_name, :consumption_profile_code, :printer_function_name, :representative_name, :location, :installed_date]
+      self.order(:client_id, :location).each do |installation|
+        csv << [
+          installation.client_code,
+          installation.client_name,
+          installation.printer_model_name,
+          installation.ink_system_name, 
+          installation.consumption_profile_code, 
+          installation.printer_function_name,
+          installation.representative_name,
+          installation.location,
+          installation.installed_date.strftime('%Y%m%d')
+          ]
+      end
+    end
+  end
   
 end

@@ -3,7 +3,11 @@ class InstalledBase::InstallationsController < InstalledBase::BaseController
   before_filter :find_installation, except: [:index, :new, :create]
   
   def index
-    @installations = Installation.order(:client_id, :location).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html 
+        @installations = Installation.order(:client_id, :location).page(params[:page]).per(10)
+      format.csv { send_data Installation.to_csv, filename: "installations.csv" }
+    end
   end
   
   def show

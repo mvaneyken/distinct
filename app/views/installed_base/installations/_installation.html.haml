@@ -1,8 +1,8 @@
 %tr
-  %td= link_to installation.client_code, installed_base_client_path(installation.client)
+  %td{title: installation.client_name}= link_to installation.client_code, installed_base_client_path(installation.client)
   %td= link_to installation.printer_model_name, installed_base_installation_path(installation)
   %td= installation.ink_system_name
-  %td= installation.consumption_profile.code
+  %td{title: installation.consumption_profile_name}= installation.consumption_profile.code
   %td= installation.printer_function_name
   %td= installation.representative_name
   %td
