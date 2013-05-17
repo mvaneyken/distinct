@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+  %title Distinct
+  = stylesheet_link_tag "application", media: "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+  = yield(:head)
+%body
+  = render 'shared/navbar'
+  .container-fluid
+    .row-fluid
+      = render partial: 'shared/sidebar'
+      .span8
+        = yield
+      = render partial: 'installed_base/shared/sidebar'
+    = render 'shared/footer'

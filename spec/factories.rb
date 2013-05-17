@@ -6,6 +6,11 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
   
+  factory :client do
+    sequence(:code) {|n| "code#{n}"}
+    sequence(:name) {|n| "name #{n}"}
+  end
+  
   factory :equipment do
     sequence(:name) {|n| "machine_#{n}"}
     manufacturer "a manufacturer"
@@ -110,6 +115,28 @@ FactoryGirl.define do
     technician
     sequence(:value) {|n| 10+n}
     lot_version
+  end
+  
+  factory :representative do
+    sequence(:first_name) {|n| "John Q#{n}"}
+    sequence(:last_name)  {|n| "Public#{n}"}
+  end
+  
+  factory :printer_model do
+    sequence(:name) {|n| "Model #{n}"}
+  end
+  
+  factory :ink_system do
+    sequence(:name) {|n| "Ink System #{n}"}
+  end
+  
+  factory :consumption_profile do
+    sequence(:code) {|n| "code#{n}"}
+    sequence(:name) {|n| "name #{n}"}
+  end
+  
+  factory :printer_function do
+    sequence(:name) {|n| "Printer Function #{n}"}
   end
   
 end

@@ -1,0 +1,18 @@
+- content_for(:sidebar) do
+  = link_to("Export to .csv", installed_base_installations_path(action: :index, format: :csv), class: 'btn btn-block btn-info')
+  
+.row
+  %h3.section-header Installations
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Client
+        %th Printer
+        %th Ink System
+        %th Consumption
+        %th Function
+        %th Representative
+        %th Actions
+    %tbody
+      = render partial: 'installation', collection: @installations
+    = paginate @installations, :theme => 'twitter-bootstrap'

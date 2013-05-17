@@ -18,7 +18,10 @@
 //= require bootstrap-alert
 //= require bootstrap-collapse
 //= require bootstrap-dropdown
+//= require bootstrap-datepicker
 //= require cocoon
 //= require autocomplete-rails
 // app
+//= require distinct
+//= require installation
 //= require lot

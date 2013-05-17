@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211213917) do
+ActiveRecord::Schema.define(:version => 20130506203632) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,20 @@ ActiveRecord::Schema.define(:version => 20130211213917) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "clients", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "consumption_profiles", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "equipment", :force => true do |t|
     t.string   "name"
     t.string   "manufacturer"
@@ -53,6 +67,25 @@ ActiveRecord::Schema.define(:version => 20130211213917) do
     t.string   "serial_number"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "ink_systems", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "installations", :force => true do |t|
+    t.integer  "client_id"
+    t.string   "location"
+    t.integer  "printer_model_id"
+    t.integer  "ink_system_id"
+    t.date     "installed_date"
+    t.integer  "consumption_profile_id"
+    t.integer  "representative_id"
+    t.integer  "printer_function_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "item_masters", :force => true do |t|
@@ -97,6 +130,38 @@ ActiveRecord::Schema.define(:version => 20130211213917) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "printer_functions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "printer_models", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "representatives", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "representatives", ["email"], :name => "index_representatives_on_email", :unique => true
+  add_index "representatives", ["reset_password_token"], :name => "index_representatives_on_reset_password_token", :unique => true
 
   create_table "samples", :force => true do |t|
     t.integer  "standard_id"
