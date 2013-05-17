@@ -10,5 +10,7 @@
  * bootstrap_and_overrides HOLD
  *
  *= require_self
- *= require_tree .
+ *= require bootstrap_and_overrides
+ *= require bootstrap-datepicker
+ *= require distinct
  */

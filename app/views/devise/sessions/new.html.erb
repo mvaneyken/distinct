@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="offset1 span7">
-		<h2>Sign in</h2>
+		<h2><%= "#{resource_name} Sign in".titleize %></h2>
 
 		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 		  <div class="form-inputs">

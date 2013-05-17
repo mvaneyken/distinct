@@ -1,0 +1,35 @@
+.row
+  %h2.section-header= @client.name
+  
+  %p
+    %span.span2
+      = label_tag :code
+    %span.span10
+      = text_field_tag :code, @client.code, readonly: true, class: 'span2'
+  %p
+    %span.span2
+      = label_tag :name
+    %span.span10  
+      = text_field_tag :name, @client.name, readonly: true, class: 'span8'
+  
+  %h3 Printers
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Printer
+        %th Ink System
+        %th Consumption
+        %th Function
+        %th Location
+        %th Installed
+    %tbody
+      - @client.installations.each do |installation|
+        %tr
+          %td= link_to installation.printer_model_name, installed_base_installation_path(installation)
+          %td= installation.ink_system_name
+          %td= installation.consumption_profile.code
+          %td= installation.printer_function_name
+          %td= installation.location
+          %td= installation.installed_date.strftime('%Y/%m/%d')
+  
+          

@@ -1,0 +1,5 @@
+.span2
+  = link_to image_tag("logo.png", :alt => "Vera InkJet Stylized Color", class: 'vgap'), I18n.t('company.url')
+  = render :partial => "shared/flash", :locals => { :flash => flash }
+  = yield :sidebar
+

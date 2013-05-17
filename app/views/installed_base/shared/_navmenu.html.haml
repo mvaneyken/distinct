@@ -1,0 +1,8 @@
+- if representative_signed_in?
+  .nav-collapse
+    %ul.nav
+      %li.divider-vertical
+      %li= link_to "Clients", installed_base_clients_path
+      %li= link_to "New Client", new_installed_base_client_path
+      %li= link_to "Installations", installed_base_installations_path
+      %li= link_to "New Installation", new_installed_base_installation_path

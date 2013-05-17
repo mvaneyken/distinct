@@ -4,9 +4,10 @@
 en:
   admin:
     label: "Administration"
-    recipes: "Recipes"
-    references: "Reference Tables"
-    resources: "Resources"
+    installations: "Installed Base Reference Tables"
+    recipes: "QC Recipes"
+    references: "QC Reference Tables"
+    resources: "QC Resources"
     security: "Security"
   app:
     title: "Quality Control"    
@@ -20,9 +21,11 @@ en:
       label: "Log in"
       admin: "Admin"
       lab: "Lab"
+      representative: "Installed Base"
     signout:
       label: "Log out"
       lab: "Lab log out"
+      representative: "Installed Base log out"
   standards:
     errors:
       tolerance_reqd: "Tolerance is required."

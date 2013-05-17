@@ -1,0 +1,19 @@
+= simple_form_for @installation, url: url, html: { class: "form-horizontal" } do |f|
+  
+  - if f.error_notification
+    = render :partial => 'shared/errors', :locals => {:f => f, :object => @installation}
+  
+  = f.association :client, collection: Client.order(:code), input_html: {class: 'span6'}, autofocus: true
+  = f.association :representative, collection: Representative.order(:last_name, :first_name).map{|o| [o.sort_name, o.id]}, input_html: {class: 'span4'}
+  = f.association :printer_model, collection: PrinterModel.order(:name)
+  = f.association :ink_system, collection: InkSystem.order(:name)
+  = f.association :consumption_profile, collection: ConsumptionProfile.order(:code)
+  = f.association :printer_function, collection: PrinterFunction.order(:name)
+  = f.input :location, input_html: {class: 'span4'}
+  = f.input :installed_date, as: :string, input_html: {type: 'text', class: 'span2', 'data-behaviour' => 'datepicker', 'data-date-format' => "yyyy-mm-dd"}
+  
+  .form-actions
+    -if @installation.persisted?
+      = f.submit 'Update installation', :class => "btn"
+    -else
+      = f.submit 'Add', :class => "btn btn-primary"
