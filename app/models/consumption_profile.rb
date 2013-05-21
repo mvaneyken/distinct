@@ -17,6 +17,7 @@ class ConsumptionProfile < ActiveRecord::Base
   
   def standardize
     self.code = self.code.upcase if self.code
+    self.name = self.code if !self.name
   end
   
 end

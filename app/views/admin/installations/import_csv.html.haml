@@ -1,0 +1,12 @@
+%table
+  %thead
+    %tr
+      %th Row
+      %th Message
+      %th Data
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= result[0]
+        %td= result[1]
+        %td= result[2]

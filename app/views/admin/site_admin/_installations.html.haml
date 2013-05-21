@@ -1,0 +1,3 @@
+= form_tag '/admin/installations/import_csv', multipart: true do
+  = file_field_tag :file
+  = submit_tag :upload
