@@ -9,6 +9,7 @@ en:
     references: "QC Reference Tables"
     resources: "QC Resources"
     security: "Security"
+    site_admin: "Site Admin"
   app:
     title: "Quality Control"    
   company:
